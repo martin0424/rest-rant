@@ -1,10 +1,16 @@
 const express = require("express");
+const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.send("Hello world!");
 });
 
-app.listen(3000, () => {
-  console.log("listening on http://localhost:3000");
+app.get("*", (_req, res) => {
+  res.status(404).send("404 you suck!");
+});
+
+app.listen(process.env.PORT, () => {
+  console.log(`listening on http://localhost:${process.env.PORT}`);
 });
