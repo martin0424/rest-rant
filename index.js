@@ -14,7 +14,7 @@ app.get('/', (_req, res) => {
 });
 
 app.get('*', (_req, res) => {
-  res.status(404).send('404 you suck!');
+  res.render('error404');
 });
 
 app.listen(process.env.PORT, () => {
