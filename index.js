@@ -12,7 +12,7 @@ app.use('/places', require('./controllers/places'));
 
 app.get('/', (req, res) => {
   let places = []
-  res.render('places/index')
+  res.render('places/index', { places })
 })
 
 app.get('/', (_req, res) => {
