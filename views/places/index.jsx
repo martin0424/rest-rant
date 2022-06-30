@@ -1,5 +1,10 @@
-const React =require('react')
-const Def = require('./default')
+const React = require('express').Router()
+const router = require('../../controllers/places.js')
+const Def = require('../models/places.js')
+
+router.get('/', (req,res) => {
+    res.render('places/index', { places })
+})
 
 function indexedDB(data) {
     let placesFormatted = data.places.map((place) => {
@@ -27,16 +32,3 @@ function indexedDB(data) {
         </Def>
     )
 }
-let places = [{
-    name: 'H-Thai-ML',
-    city: 'Seattle',
-    state: 'WA',
-    cuisines: 'Thai, Pan-Asian',
-    pic: '/images/food-1.jpg'
-}, {
-    name: 'Coding Cat Cafe',
-    city: 'Phoenix',
-    state: 'AS',
-    cuisines: 'Coffee, Bakery',
-    pic: '/images/restaurant.jpg'
-}]
