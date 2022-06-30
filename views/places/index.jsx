@@ -1,7 +1,7 @@
 const React =require('react')
 const Def = require('./default')
 
-sunction indexedDB(data) {
+function indexedDB(data) {
     let placesFormatted = data.places.map((place) => {
         return (
             <div>

@@ -1,28 +1,26 @@
+// Modules and Globals
+require('dotenv').config();
 const express = require('express');
-const dotenv = require('dotenv');
-const req = require('express/lib/request');
 
-dotenv.config();
 const app = express();
 
-app.set('view engine', 'jsx')
-app.engine('jsx', require('express-react-views').createEngine)
+// Express Settings
+app.set('views', `${__dirname}/views`);
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
 
+app.use(express.static('public'));
+
+// Controllers & Routes
 app.use('/places', require('./controllers/places'));
 
 app.get('/', (req, res) => {
-  let places = []
-  res.render('places/index', { places })
-})
-
-app.get('/', (_req, res) => {
-  res.render('Hello world!');
+  res.render('home');
 });
 
-app.get('*', (_req, res) => {
+app.get('*', (req, res) => {
   res.render('error404');
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`listening on http://localhost:${process.env.PORT}`);
-});
+// Listen for Connections
+app.listen(process.env.PORT);
