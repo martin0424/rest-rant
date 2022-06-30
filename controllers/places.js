@@ -28,6 +28,18 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  const id = Number(req.params.id);
+  // eslint-disable-next-line no-restricted-globals
+  if (isNaN(id)) {
+    res.render('error404');
+  } else if (!places[id]) {
+    res.render('error404');
+  } else {
+    res.render('places/show', { places: places[id], id });
+  }
+});
+
+router.delete('/places/:id', (req, res) => {
   let id = Number(req.params.id);
   if (isNaN(id)) {
     res.render('error404');
@@ -36,7 +48,8 @@ router.get('/:id', (req, res) => {
     res.render('error404');
   }
   else {
-    res.render('places/show', { places: places[id] });
+    places.splice(id, 1);
+    res.redirect('/places');
   }
 });
 
