@@ -1,6 +1,5 @@
-const React = require('express').Router()
-const router = require('../../controllers/places.js')
-const Def = require('../models/places.js')
+const router = require('express').Router()
+const places = require('../models/places.js')
 
 router.get('/', (req,res) => {
     res.render('places/index', { places })
